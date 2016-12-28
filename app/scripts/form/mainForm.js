@@ -1,10 +1,14 @@
 class MainForm {
   constructor(element){
     this.element = element;
+    this.form = this.element.querySelector('form');
     this.items = [];
 
-    this.element.querySelector('form').ondrop = this.itemDrop.bind(this);
-    this.element.querySelector('form').ondragover = this.itemDragOver.bind(this);
+    let form = this.element.querySelector('.panel-body');
+    form.ondrop = this.itemDrop.bind(this);
+    form.ondragover = this.itemDragOver.bind(this);
+    form.ondragenter = this.itemDragEnter.bind(this);
+    form.ondragleave = this.itemDragLeave.bind(this);
 
     //load state
   }
@@ -12,7 +16,8 @@ class MainForm {
   itemDrop (event){
     event.preventDefault();
 
-    var template = event.dataTransfer.getData("template");
+    DropHelper.clearDropPlace(this.element);
+    var template = event.dataTransfer.getData('template');
     let newItem = new FormItem(template);
     this.items.push(newItem);
     this.element.querySelector('form').appendChild(newItem.getElement());
@@ -20,5 +25,14 @@ class MainForm {
 
   itemDragOver (event){
     event.preventDefault();
+    DropHelper.dropEnter(this.form);
   }
+
+  itemDragEnter(event){
+    DropHelper.dropEnter(this.form);
+  };
+
+  itemDragLeave (event) {
+    DropHelper.dropLeave(this.form);
+  };
 }
