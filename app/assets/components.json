@@ -1,0 +1,22 @@
+[
+  {
+    "type": "input",
+    "caption": "input with label",
+    "template": "<label >Email address</label><input type='text' class='form-control'>"
+  },
+  {
+    "type": "imageHeader",
+    "caption": "image with caption",
+    "template": "<span>123</span>"
+  },
+  {
+    "type": "text3Column",
+    "caption": "3 column text",
+    "template": "<span>qwe</span>"
+  },
+  {
+    "type": "textImage",
+    "caption": "text with image",
+    "template":"<span>1q2w</span>"
+  }
+]

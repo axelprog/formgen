@@ -74,6 +74,11 @@ gulp.task('fonts', () => {
     .pipe($.if(dev, gulp.dest('.tmp/fonts'), gulp.dest('dist/fonts')));
 });
 
+gulp.task('assets', () => {
+  return gulp.src('app/assets/**/*')
+    .pipe(gulp.dest('dist/assets'));
+});
+
 gulp.task('extras', () => {
   return gulp.src([
     'app/*',
@@ -101,6 +106,7 @@ gulp.task('serve', () => {
     gulp.watch([
       'app/*.html',
       'app/images/**/*',
+      'app/assets/**/*',
       '.tmp/fonts/**/*'
     ]).on('change', reload);
 
@@ -157,7 +163,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['lint', 'html', 'images', 'assets', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
