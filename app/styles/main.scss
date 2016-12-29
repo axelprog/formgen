@@ -24,9 +24,22 @@ $icon-font-path: '../fonts/';
     min-height: 20px;
 
 
-    .form-group{
+    .formItem{
       border: 1px solid #c7ddef;
       padding: 5px;
+
+      .hoverShow{
+        display: none;
+      }
+
+      &:hover{
+        border-color: #70abef;
+
+        .hoverShow{
+          display: block;
+        }
+
+      }
     }
   }
 

@@ -1,7 +1,8 @@
 class FormItem {
-  constructor(template) {
+  constructor(template, formObject) {
     this._id = GuidHelper.GenerateGuid();
     this.template = template;
+    this.formObject = formObject;
     this.createElement();
   }
 
@@ -17,7 +18,10 @@ class FormItem {
     let newNode = document.createElement('div');
     newNode.classList.add('form-group', 'formItem');
     newNode.dataset.id = this._id;
-    newNode.innerHTML = this.template;
+
+    newNode.innerHTML = ('<div class="pull-right hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
+
+    newNode.querySelector('.close') .onclick = this.deleteElement.bind(this);
 
     this.element = newNode;
   }
@@ -29,15 +33,8 @@ class FormItem {
     return this.element;
   }
 
-  // itemDragEnter(event){
-  //   DropHelper.dropEnter(this.element);
-  // };
-  //
-  // itemDragOver (event) {
-  //   event.preventDefault();
-  // };
-  //
-  // itemDragLeave (event) {
-  //   DropHelper.dropLeave(this.element);
-  // };
+  deleteElement(){
+    this.element.parentNode.removeChild(this.element);
+    this.formObject.deleteItem(this._id);
+  }
 }

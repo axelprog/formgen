@@ -19,7 +19,7 @@ class MainForm {
 
     DropHelper.clearDropPlace(this.element);
     var template = event.dataTransfer.getData('template');
-    let newItem = new FormItem(template);
+    let newItem = new FormItem(template, this);
 
     let formItem = FormItem.getFormItemView(event.target);
 
@@ -42,4 +42,8 @@ class MainForm {
   itemDragLeave(event) {
     DropHelper.dropLeave(this.form);
   };
+
+  deleteItem(id){
+    this.items.delete(id);
+  }
 }
