@@ -25,7 +25,10 @@ class MainForm {
 
   itemDragOver (event){
     event.preventDefault();
-    DropHelper.dropEnter(this.form);
+    let formItem = event.target.classList.contains('formItem') ? event.target : event.target.closest('.formItem');
+    if(formItem) {
+      DropHelper.dropEnter(formItem);
+    }
   }
 
   itemDragEnter(event){
