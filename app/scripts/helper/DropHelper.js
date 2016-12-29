@@ -17,7 +17,9 @@ class DropHelper {
       return;
     }
 
-    DropHelper.dropLeave();
+    if(dropPlace && element != dropPlace.parentNode) {
+      DropHelper.dropLeave();
+    }
 
     if(!dropPlace){
       DropHelper.createDropPlace();
