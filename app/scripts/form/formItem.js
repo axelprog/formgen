@@ -18,6 +18,8 @@ class FormItem {
     let newNode = document.createElement('div');
     newNode.classList.add('form-group', 'formItem');
     newNode.dataset.id = this._id;
+    newNode.setAttribute('draggable', 'true');
+    newNode.ondragstart = this.itemDrag.bind(this);
 
     newNode.innerHTML = ('<div class="pull-right hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
 
@@ -33,8 +35,18 @@ class FormItem {
     return this.element;
   }
 
+  itemDrag (event) {
+    event.dataTransfer.setData('type', this.type);
+    event.dataTransfer.setData('id', this._id);
+    event.dataTransfer.setData('isCopy', true);
+  }
+
   deleteElement(){
-    this.element.parentNode.removeChild(this.element);
+    this.deleteView();
     this.formObject.deleteItem(this._id);
+  }
+
+  deleteView(){
+    this.element.parentNode.removeChild(this.element);
   }
 }

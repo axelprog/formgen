@@ -14,16 +14,24 @@ class MainForm {
     //load state
   }
 
+
   itemDrop(event) {
     event.preventDefault();
 
     DropHelper.clearDropPlace(this.element);
-    var template = event.dataTransfer.getData('template');
-    let newItem = new FormItem(template, this);
+    let newItem = null;
+    if (!event.dataTransfer.getData('isCopy')) {
+
+      var template = event.dataTransfer.getData('template');
+      newItem = new FormItem(template, this);
+      this.items.set(newItem.id, newItem);
+
+    } else {
+      newItem = this.items.get(event.dataTransfer.getData('id'));
+      newItem.deleteView();
+    }
 
     let formItem = FormItem.getFormItemView(event.target);
-
-    this.items.set(newItem.id, newItem);
     this.element.querySelector('form').insertBefore(newItem.getElement(), formItem ? formItem.nextSibling : null);
   }
 
@@ -43,7 +51,7 @@ class MainForm {
     DropHelper.dropLeave(this.form);
   };
 
-  deleteItem(id){
+  deleteItem(id) {
     this.items.delete(id);
   }
 }
