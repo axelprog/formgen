@@ -12,8 +12,6 @@ class DropHelper {
     dropPlace.textContent = 'Drop here';
     dropPlace.classList.add(DropHelper.dropPlaceClass, 'col-sm-12');
     element.appendChild(dropPlace);
-
-    console.log('enter', element);
   }
 
   static dropLeave(element){
@@ -21,8 +19,6 @@ class DropHelper {
     if(dropPlace) {
       dropPlace.parentNode.removeChild(dropPlace);
     }
-
-    console.log('leave ',element);
   }
 
   static clearDropPlace(element){
@@ -30,6 +26,5 @@ class DropHelper {
     if(dropPlace){
       dropPlace.forEach(element => element.parentNode.removeChild(element));
     }
-    console.log('clear ',element);
   }
 }

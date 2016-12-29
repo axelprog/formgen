@@ -18,7 +18,16 @@ $icon-font-path: '../fonts/';
   margin-bottom: 5px;
 }
 
-form {
-  min-height: 15px;
+.baseView{
+
+  form {
+    min-height: 20px;
+
+
+    .form-group{
+      border: 1px solid #c7ddef;
+      padding: 5px;
+    }
+  }
 
 }
