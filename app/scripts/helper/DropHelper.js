@@ -1,42 +1,44 @@
-let dropPlace = null;
+{
+  let dropPlace = null;
 
-class DropHelper {
-  static get dropPlaceClass() {
-    return 'dropPlace';
-  }
-
-
-  static createDropPlace (){
-    dropPlace = document.createElement('div');
-    dropPlace.textContent = 'Drop here';
-    dropPlace.classList.add(DropHelper.dropPlaceClass, 'col-sm-12');
-  }
-
-  static dropEnter(element){
-    if(element.querySelector(`.${DropHelper.dropPlaceClass}`)){
-      return;
+  window.DropHelper = class DropHelper {
+    static get dropPlaceClass() {
+      return 'dropPlace';
     }
 
-    if(dropPlace && element != dropPlace.parentNode) {
-      DropHelper.dropLeave();
+
+    static createDropPlace() {
+      dropPlace = document.createElement('div');
+      dropPlace.textContent = 'Drop here';
+      dropPlace.classList.add(DropHelper.dropPlaceClass, 'form-group');
     }
 
-    if(!dropPlace){
-      DropHelper.createDropPlace();
-    }
-    element.appendChild(dropPlace);
-  }
+    static dropEnter(element) {
+      if (element.querySelector(`.${DropHelper.dropPlaceClass}`)) {
+        return;
+      }
 
-  static dropLeave(){
-    if(dropPlace && dropPlace.parentNode) {
-      dropPlace.parentNode.removeChild(dropPlace);
-    }
-  }
+      if (dropPlace && element != dropPlace.parentNode) {
+        DropHelper.dropLeave();
+      }
 
-  static clearDropPlace(element){
-    let dropPlaces = element.querySelectorAll(`.${DropHelper.dropPlaceClass}`);
-    if(dropPlaces){
-      dropPlaces.forEach(element => element.parentNode.removeChild(element));
+      if (!dropPlace) {
+        DropHelper.createDropPlace();
+      }
+      element.parentNode.insertBefore(dropPlace, element.nextSibling);
+    }
+
+    static dropLeave() {
+      if (dropPlace && dropPlace.parentNode) {
+        dropPlace.parentNode.removeChild(dropPlace);
+      }
+    }
+
+    static clearDropPlace(element) {
+      let dropPlaces = element.querySelectorAll(`.${DropHelper.dropPlaceClass}`);
+      if (dropPlaces) {
+        dropPlaces.forEach(element => element.parentNode.removeChild(element));
+      }
     }
   }
 }
