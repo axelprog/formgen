@@ -1,7 +1,8 @@
 class FormItem {
-  constructor(template, formObject) {
+  constructor(type, template, formObject) {
     this._id = GuidHelper.GenerateGuid();
     this.template = template;
+    this.type = type;
     this.formObject = formObject;
     this.createElement();
   }
@@ -23,7 +24,7 @@ class FormItem {
 
     newNode.innerHTML = ('<div class="hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
 
-    newNode.querySelector('.close') .onclick = this.deleteElement.bind(this);
+    newNode.querySelector('.close').onclick = this.deleteElement.bind(this);
 
     this.element = newNode;
   }
@@ -35,18 +36,22 @@ class FormItem {
     return this.element;
   }
 
-  itemDrag (event) {
+  itemDrag(event) {
     event.dataTransfer.setData('type', this.type);
     event.dataTransfer.setData('id', this._id);
     event.dataTransfer.setData('isCopy', true);
   }
 
-  deleteElement(){
+  deleteElement() {
     this.deleteView();
     this.formObject.deleteItem(this._id);
   }
 
-  deleteView(){
+  deleteView() {
     this.element.parentNode.removeChild(this.element);
+  }
+
+  serialize() {
+    return {type: this.type, id: this._id}
   }
 }

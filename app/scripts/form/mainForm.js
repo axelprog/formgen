@@ -13,8 +13,23 @@ class MainForm {
     form.ondragleave = this.itemDragLeave.bind(this);
 
     //load state
+    this.loadForm();
   }
 
+  loadForm(){
+    $.getJSON('assets/preloadForm.json', function (json) {
+      let serializedForm = json;
+      let form = this.element.querySelector('form');
+
+      serializedForm.forEach( component => {
+        let template = SidePanel.getTemplateByType(component.type);
+        let newItem = new FormItem(component.type, template, this);
+        this.items.set(newItem.id, newItem);
+        form.appendChild(newItem.getElement());
+      });
+
+    }.bind(this));
+  }
 
   itemDrop(event) {
     event.preventDefault();
@@ -24,7 +39,8 @@ class MainForm {
     if (!event.dataTransfer.getData('isCopy')) {
 
       var template = event.dataTransfer.getData('template');
-      newItem = new FormItem(template, this);
+      var type = event.dataTransfer.getData('type');
+      newItem = new FormItem(type, template, this);
       this.items.set(newItem.id, newItem);
 
     } else {
@@ -48,16 +64,18 @@ class MainForm {
     }
   }
 
-  // itemDragEnter(event) {
-  //   DropHelper.dropEnter(this.form);
-  // };
-
   itemDragLeave(event) {
-// console.log('leave', event.target, event);
     DropHelper.dropLeave(this.form);
   };
 
   deleteItem(id) {
     this.items.delete(id);
+  }
+
+  serialize() {
+    let json = [];
+    this.form.querySelectorAll('.formItem').forEach(item => json.push(this.items.get(item.dataset.id).serialize()));
+
+    return json;
   }
 }

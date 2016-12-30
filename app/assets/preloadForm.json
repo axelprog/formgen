@@ -1,0 +1,26 @@
+[
+  {
+    "type": "input",
+    "id": "53f48722-43e8-458b-2d9b-d02dcca7601c"
+  },
+  {
+    "type": "imageHeader",
+    "id": "b137f3d3-facf-4a50-d896-27cb05fdbea3"
+  },
+  {
+    "type": "text3Column",
+    "id": "611a35a4-7638-4d93-6495-abbd60c1f6b3"
+  },
+  {
+    "type": "textImage",
+    "id": "9311b3be-343a-48fb-2b4c-7a23474863b2"
+  },
+  {
+    "type": "input",
+    "id": "a172b9fd-f22d-4af0-938a-ca8b2fe14307"
+  },
+  {
+    "type": "imageHeader",
+    "id": "000dc2d8-791e-4a6a-411f-9af246a70dd8"
+  }
+]
