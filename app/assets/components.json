@@ -7,7 +7,7 @@
   {
     "type": "imageHeader",
     "caption": "image with caption",
-    "template": "<span>adas</span>"
+    "template": "<div><div style='background-image: url(\"images/block1.jpg\");color: white;'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, tempore?</div></div>"
   },
   {
     "type": "text3Column",
@@ -17,6 +17,6 @@
   {
     "type": "textImage",
     "caption": "text with image",
-    "template":"<div class='row'><div class='col-sm-4'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, tempore?</div><div class='col-sm-8'><img src='images/block1.jpg' class='img-responsive'></div></div>"
+    "template":"<div class='row'><div class='col-sm-4'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, tempore?</div><div class='col-sm-8'><img src='images/block1.jpg' class='img-responsive' style='max-width: 500px'></div></div>"
   }
 ]
