@@ -9,11 +9,10 @@ class MainForm {
     let form = this.element.querySelector('.panel-body');
     form.ondrop = this.itemDrop.bind(this);
     form.ondragover = this.itemDragOver.bind(this);
-    // form.ondragenter = this.itemDragEnter.bind(this);
     form.ondragleave = this.itemDragLeave.bind(this);
 
     //load state
-    this.loadForm();
+     this.loadForm();
   }
 
   loadForm(){
@@ -65,7 +64,10 @@ class MainForm {
   }
 
   itemDragLeave(event) {
-    DropHelper.dropLeave(this.form);
+    event.stopPropagation();
+    if(event.toElement.tagName.toLowerCase() != 'form') {
+      DropHelper.dropLeave(this.form);
+    }
   };
 
   deleteItem(id) {

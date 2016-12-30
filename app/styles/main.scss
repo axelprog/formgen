@@ -23,7 +23,6 @@ $icon-font-path: '../fonts/';
   form {
     min-height: 20px;
 
-
     .formItem{
       border: 1px solid #c7ddef;
       padding: 5px;
@@ -35,6 +34,11 @@ $icon-font-path: '../fonts/';
         right: 0px;
         left: 0px;
         top: -20px;
+
+        .close{
+          opacity: 1;
+          float: left;
+        }
       }
 
       &:hover{
