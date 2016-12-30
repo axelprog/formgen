@@ -17,12 +17,12 @@ class FormItem {
 
   createElement() {
     let newNode = document.createElement('div');
-    newNode.classList.add('form-group', 'formItem');
+    newNode.classList.add('formItem');
     newNode.dataset.id = this._id;
     newNode.setAttribute('draggable', 'true');
     newNode.ondragstart = this.itemDrag.bind(this);
 
-    newNode.innerHTML = ('<div class="hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
+    newNode.innerHTML = ('<div class="form-group"><div class="hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template +'</div>');
 
     newNode.querySelector('.close').onclick = this.deleteElement.bind(this);
 

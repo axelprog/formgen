@@ -66,7 +66,6 @@ class MainForm {
   itemDragLeave(event) {
     event.stopPropagation();
     if(event.toElement.tagName.toLowerCase() != 'form') {
-      console.log(event, event.toElement);
       DropHelper.dropLeave(this.form);
     }
   };
