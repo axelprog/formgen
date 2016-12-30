@@ -59,13 +59,14 @@ class MainForm {
     if (formItem) {
       DropHelper.dropEnter(formItem);
     } else {
-      DropHelper.dropEnter(this.form);
+      DropHelper.dropEnter(this.form, event.clientY < (this.form.clientHeight / 2)); //detect drop place: top or bottom
     }
   }
 
   itemDragLeave(event) {
     event.stopPropagation();
     if(event.toElement.tagName.toLowerCase() != 'form') {
+      console.log(event, event.toElement);
       DropHelper.dropLeave(this.form);
     }
   };

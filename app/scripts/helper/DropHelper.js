@@ -12,11 +12,11 @@
 
     static createDropPlace() {
       dropPlace = document.createElement('div');
-      dropPlace.textContent = 'Drop here';
+      dropPlace.textContent = 'Component will placed here';
       dropPlace.classList.add(DropHelper.dropPlaceClass, 'form-group');
     }
 
-    static dropEnter(element) {
+    static dropEnter(element, toTopForm ) {
 
       //reduce  removes and isertings of the drop place
       if(element.nextSibling && element.nextSibling.classList
@@ -33,7 +33,8 @@
       }
 
       if(element.tagName.toLowerCase() == 'form'){
-        element.appendChild(dropPlace);
+        toTopForm === true ? element.insertBefore(dropPlace, element.firstChild) : element.appendChild(dropPlace);
+
       } else {
         element.parentNode.insertBefore(dropPlace, element.nextSibling);
       }
