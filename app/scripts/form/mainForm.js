@@ -19,7 +19,7 @@ class MainForm {
   itemDrop(event) {
     event.preventDefault();
 
-    DropHelper.clearDropPlace(this.element);
+
     let newItem = null;
     if (!event.dataTransfer.getData('isCopy')) {
 
@@ -33,7 +33,9 @@ class MainForm {
     }
 
     let formItem = FormItem.getFormItemView(event.target);
-    this.element.querySelector('form').insertBefore(newItem.getElement(), formItem ? formItem.nextSibling : null);
+
+    this.element.querySelector('form').insertBefore(newItem.getElement(), DropHelper.getDropPlace());
+    DropHelper.clearDropPlace(this.element);
   }
 
   itemDragOver(event) {
@@ -51,7 +53,7 @@ class MainForm {
   // };
 
   itemDragLeave(event) {
-console.log('leave', event.target, event);
+// console.log('leave', event.target, event);
     DropHelper.dropLeave(this.form);
   };
 

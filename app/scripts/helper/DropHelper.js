@@ -6,6 +6,9 @@
       return 'dropPlace';
     }
 
+    static getDropPlace() {
+      return dropPlace;
+    }
 
     static createDropPlace() {
       dropPlace = document.createElement('div');
