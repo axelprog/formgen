@@ -27,13 +27,18 @@ $icon-font-path: '../fonts/';
     .formItem{
       border: 1px solid #c7ddef;
       padding: 5px;
+      position: relative;
 
       .hoverShow{
         display: none;
+        position: absolute;
+        right: 0px;
+        left: 0px;
+        top: -20px;
       }
 
       &:hover{
-        border-color: #70abef;
+        border-color: #9880ef;
 
         .hoverShow{
           display: block;

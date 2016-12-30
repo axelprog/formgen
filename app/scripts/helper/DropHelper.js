@@ -14,21 +14,30 @@
     }
 
     static dropEnter(element) {
-      if (element.querySelector(`.${DropHelper.dropPlaceClass}`)) {
-        return;
+
+      //reduce  removes and isertings of the drop place
+      if(element.nextSibling && element.nextSibling.classList
+        && element.nextSibling.classList.contains(DropHelper.dropPlaceClass)){
+        return
       }
 
-      if (dropPlace && element != dropPlace.parentNode) {
+      if ( dropPlace && element != dropPlace.parentNode) {
         DropHelper.dropLeave();
       }
 
       if (!dropPlace) {
         DropHelper.createDropPlace();
       }
-      element.parentNode.insertBefore(dropPlace, element.nextSibling);
+
+      if(element.tagName.toLowerCase() == 'form'){
+        element.appendChild(dropPlace);
+      } else {
+        element.parentNode.insertBefore(dropPlace, element.nextSibling);
+      }
     }
 
     static dropLeave() {
+
       if (dropPlace && dropPlace.parentNode) {
         dropPlace.parentNode.removeChild(dropPlace);
       }

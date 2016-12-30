@@ -21,7 +21,7 @@ class FormItem {
     newNode.setAttribute('draggable', 'true');
     newNode.ondragstart = this.itemDrag.bind(this);
 
-    newNode.innerHTML = ('<div class="pull-right hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
+    newNode.innerHTML = ('<div class="hoverShow"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' + this.template);
 
     newNode.querySelector('.close') .onclick = this.deleteElement.bind(this);
 
